@@ -11,7 +11,7 @@ lights:
     light2:
         visible: false
         type: point
-        position: [-74.0170, 40.7031, 100]
+        position: [4.60284,-74.0671411, 100]
         origin: world
         ambient: .2
         diffuse: 1
