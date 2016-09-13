@@ -74,43 +74,6 @@ layers:
                     order: function() { return feature.sort_key; }
                     color: lightgrey
                     width: 5
-    
-    building-labels:
-        data: {source: osm, layer: buildings}
-        filter:
-            all: 
-                - { $zoom: {min: 16}}
-                - $geometry: point
-                - not: { location: underground}
-                - kind: [false, building, university, college, school, kindergarten]
-            any:
-                - { $zoom: [16], area: { min: 5000 }, name: true }
-                - { $zoom: [16], area: { min: 5000 }, kind: true }
-                - { $zoom: [16], area: { min: 10000 }, landuse_kind: true }
-                - { $zoom: [16], area: { min: 7000 }, kind: [university, college, school, kindergarten] }
-                - { $zoom: [16], volume: { min: 50000 }, name: true }
-                - { $zoom: [17], area: { min: 3000 }, name: true }
-                - { $zoom: [17], area: { min: 2000 }, kind: [university, college, school, kindergarten] }
-                - { $zoom: [18], area: { min: 1000 }, name: true }
-                - { $zoom: [18], kind: [university, college, school, kindergarten] }
-                - { $zoom: [19], area: { min: 200 }, name: true }
-                - { $zoom: { min: 19 }, kind: [university, college, school, kindergarten] }
-                - { $zoom: { min: 20 }, name: true }
-                
-        draw:
-            text-blend-order:
-                interactive: true
-                move_into_tile: true
-                priority: 51
-                visible: *text_visible_building
-                order: 7
-                font:
-                    fill: *text_fill
-                    family: *text_font_family
-                    style: italic
-                    size: 11px
-                    stroke: { color: *text_stroke_address, width: 1 }
-
 
     buildings:
         data: { source: osm }
@@ -124,6 +87,15 @@ layers:
                         h = Math.max(h, .4); // min brightness: .4
                         return [h, h, h];
                     }
+            text:
+                text_source: [name: en, name]
+                visible: true
+                font:
+                    fill: '#000000'
+                    family: text_font_family
+                    style: italic
+                    size: 11px
+                    stroke: { color: '#000000', width: 1 }
         3d-buildings:
             filter: { $zoom: { min: 15 } }
             draw:
