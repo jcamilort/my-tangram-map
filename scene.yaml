@@ -87,6 +87,8 @@ layers:
                         h = Math.max(h, .4); // min brightness: .4
                         return [h, h, h];
                     }
+            addr_street:
+
         3d-buildings:
             filter: { $zoom: { min: 15 } }
             draw:
